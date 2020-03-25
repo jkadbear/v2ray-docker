@@ -1,0 +1,26 @@
+{
+    "inbounds": [{
+        "port": 24682,
+        "protocol": "vmess",
+        "settings": {
+        "clients": [
+            {
+            "id": "01187eaf-bf75-4ad8-9471-3d3521e3bf72",
+            "level": 1,
+            "alterId": 64
+            }
+        ]
+        },
+        "streamSettings": {
+            "network": "ws"
+        }
+    }],
+    "outbounds": [{
+        "protocol": "freedom",
+        "settings": {}
+    },{
+        "protocol": "blackhole",
+        "settings": {},
+        "tag": "blocked"
+    }]
+}
