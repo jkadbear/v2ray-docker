@@ -1,26 +1,80 @@
 {
-    "inbounds": [{
-        "port": 24682,
-        "protocol": "vmess",
-        "settings": {
-        "clients": [
-            {
-            "id": "01187eaf-bf75-4ad8-9471-3d3521e3bf72",
-            "level": 1,
-            "alterId": 64
-            }
+    "stats": {},
+    "api": {
+        "tag": "api",
+        "services": [
+            "StatsService"
         ]
+    },
+    "policy": {
+        "levels": {
+            "0": {
+                "statsUserUplink": true,
+                "statsUserDownlink": true
+            }
         },
-        "streamSettings": {
-            "network": "ws"
+        "system": {
+            "statsInboundUplink": true,
+            "statsInboundDownlink": true
         }
-    }],
-    "outbounds": [{
-        "protocol": "freedom",
-        "settings": {}
-    },{
-        "protocol": "blackhole",
-        "settings": {},
-        "tag": "blocked"
-    }]
+    },
+    "inbounds": [
+        {
+            "tag": "tcp",
+            "port": 24682,
+            "protocol": "vmess",
+            "settings": {
+                "clients": [
+                    {
+                        "email": "me",
+                        "id": "01187eaf-bf75-4ad8-9471-3d3521e3bf72",
+                        "level": 0,
+                        "alterId": 64
+                    },
+                    {
+                        "email": "u2",
+                        "id": "f9a9a111-dc05-4e5b-a6ed-5c8f9b758cbf",
+                        "level": 0,
+                        "alterId": 64
+                    },
+                    {
+                        "email": "u3",
+                        "id": "11f9f4da-6774-4705-9468-d261d444835e",
+                        "level": 0,
+                        "alterId": 64
+                    }
+                ]
+            }
+        },
+        {
+            "listen": "127.0.0.1",
+            "port": 10085,
+            "protocol": "dokodemo-door",
+            "settings": {
+                "address": "127.0.0.1"
+            },
+            "tag": "api"
+        }
+    ],
+    "outbounds": [
+        {
+            "protocol": "freedom",
+            "settings": {}
+        }
+    ],
+    "routing": {
+        "settings": {
+            "rules": [
+                {
+                    "inboundTag": [
+                        "api"
+                    ],
+                    "outboundTag": "api",
+                    "type": "field"
+                }
+            ]
+        },
+        "strategy": "rules"
+    }
 }
+
